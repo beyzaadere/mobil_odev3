@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 
+// Uygulamanın başlangıç noktası
 void main() {
   runApp(MyApp());
 }
 
+// Ana uygulama widget'ı
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      debugShowCheckedModeBanner: false, // Debug banner'ı gizle
+      home: HomePage(), // Ana sayfa widget'ı
     );
   }
 }
 
+// Ana sayfa widget'ı
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -24,33 +27,33 @@ class HomePage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(left: 40.0),
             child: Text(
-              'Firmalar',
+              'Firmalar', // Uygulama çubuğundaki başlık
               style: TextStyle(color: Colors.white),
             ),
           ),
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back), // Geri düğmesi simgesi
           onPressed: () {
-            // Geri tuşu işlemi
+            // Geri tuşu işlemi (işlevsellik eklenebilir)
           },
         ),
-        backgroundColor: Color(0xFF4A148C), // Mor-lacivert geçişli renk
+        backgroundColor: Color(0xFF4A148C), // Uygulama çubuğu arka plan rengi
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0), // İçerik için kenar boşlukları
         child: Column(
           children: [
             // Sağlık bölümü butonu
             Container(
-              padding: EdgeInsets.all(12),
+              padding: EdgeInsets.all(12), // İç boşluk
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [Color(0xFF4A148C), Color(0xFF7B1FA2)], // Renk geçişi
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                 ),
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(8), // Kenar yuvarlama
               ),
               child: Row(
                 children: [
@@ -65,20 +68,20 @@ class HomePage extends StatelessWidget {
                     ),
                     child: Center(
                       child: Icon(
-                        Icons.add, // Kırmızı artı
+                        Icons.add, // Kırmızı artı simgesi
                         color: Colors.red,
                         size: 24,
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  SizedBox(width: 10), // İki widget arasındaki boşluk
                   Expanded(
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 50.0),
+                        padding: const EdgeInsets.only(left: 50.0), // Metin için sol boşluk
                         child: Text(
-                          'Sağlık',
+                          'Sağlık', // Buton metni
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -91,7 +94,7 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 16), // Sağlık butonuyla sonraki bölüm arasındaki boşluk
 
             // Firma Ara kısmı
             Column(
@@ -99,34 +102,34 @@ class HomePage extends StatelessWidget {
               children: [
                 TextField(
                   decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.search),
-                    hintText: 'Firma Ara',
-                    filled: true,
-                    fillColor: Colors.grey.shade300,
+                    prefixIcon: Icon(Icons.search), // Arama ikonu
+                    hintText: 'Firma Ara', // Arama kutusundaki ipucu metni
+                    filled: true, // Arka plan rengini doldur
+                    fillColor: Colors.grey.shade300, // Arka plan rengi
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(10), // Kenar yuvarlama
                     ),
                   ),
                 ),
-                SizedBox(height: 8),
+                SizedBox(height: 8), // Arama kutusuyla açıklama metni arasındaki boşluk
                 Text(
                   'İstediğiniz firmada indirim yakalama fırsatı...',
-                  style: TextStyle(color: Colors.grey.shade600),
+                  style: TextStyle(color: Colors.grey.shade600), // Açıklama metni rengi
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 16), // Firma arama kısmıyla firma listesinin arasındaki boşluk
 
             // Firma listesi
             Expanded(
               child: ListView.builder(
-                itemCount: 5,
+                itemCount: 5, // Liste öğe sayısı
                 itemBuilder: (context, index) {
                   return CompanyCard(
-                    companyName: index % 2 == 0
+                    companyName: index % 2 == 0 // Tekrar eden firma adları
                         ? "Firma Adı Uzun Firma Adı"
                         : "Firma Adı",
-                    discount: "10%",
+                    discount: "10%", // İndirim oranı
                   );
                 },
               ),
@@ -140,24 +143,24 @@ class HomePage extends StatelessWidget {
 
 // Firma kartları için widget
 class CompanyCard extends StatelessWidget {
-  final String companyName;
-  final String discount;
+  final String companyName; // Firma adı
+  final String discount; // İndirim oranı
 
   CompanyCard({required this.companyName, required this.discount});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      margin: EdgeInsets.symmetric(vertical: 8),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), // Kart kenar yuvarlama
+      margin: EdgeInsets.symmetric(vertical: 8), // Kartlar arası dikey boşluk
       child: Row(
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Icon(Icons.local_offer, color: Color(0xFF4A148C)), // Doğru sembol
+            child: Icon(Icons.local_offer, color: Color(0xFF4A148C)), // İndirim simgesi
           ),
           Expanded(
-            child: Text(companyName),
+            child: Text(companyName), // Firma adı
           ),
           Align(
             alignment: Alignment.centerRight,
@@ -172,13 +175,13 @@ class CompanyCard extends StatelessWidget {
                   end: Alignment.centerRight,
                 ),
                 borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(10),
-                  bottomRight: Radius.circular(10),
+                  topRight: Radius.circular(10), // Kartın sağ üst köşesi yuvarlatma
+                  bottomRight: Radius.circular(10), // Kartın sağ alt köşesi yuvarlatma
                 ),
               ),
               child: Text(
-                discount,
-                style: TextStyle(color: Colors.white, fontSize: 16),
+                discount, // İndirim oranı
+                style: TextStyle(color: Colors.white, fontSize: 16), // İndirim yazısı stili
               ),
             ),
           ),
